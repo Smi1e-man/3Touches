@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231d337b8fa8449c9b4f73be7aee3cca, type: 3}
+  m_Name: GameSetting
+  m_EditorClassIdentifier: 
+  _TouchMax: 3
+  _BallMax: 3
+  _LvlsObstacles:
+  - {fileID: 446441353745214248, guid: 504417c79ae0c4d08a366b43cd296afb, type: 3}
+  - {fileID: 3480111914273381049, guid: 78db177df56294fb583af525df22b9c8, type: 3}
+  - {fileID: 1308421867231768761, guid: 19c4dee710d824e71a2256777bba3630, type: 3}
+  - {fileID: 7303075058381785039, guid: 5b72b137934ce4b02a6001e7f3f3d84d, type: 3}
+  - {fileID: 1179278011377475214, guid: 0a13202aac7a74f45a947651b68c3f48, type: 3}
+  - {fileID: 3861475004091812135, guid: 143cbe9442b2a42f894a90058ee9438d, type: 3}
+  - {fileID: 5141491416160088102, guid: 6c83e2a5e2ff54d2a8e64d88d787d479, type: 3}
+  - {fileID: 5880112677577990001, guid: ce0d4877511cf415fb2eee8c78324209, type: 3}
+  - {fileID: 2478110718453454759, guid: 73b87c38ec4fc44ac81751d21c2d8298, type: 3}
+  - {fileID: 6012596719769308182, guid: 7d9d633eb8fc14851914eb73444b024e, type: 3}
