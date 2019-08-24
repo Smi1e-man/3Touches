@@ -7,6 +7,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    //private visual values
     [SerializeField] private GameObject _start;
     [SerializeField] private GameObject _retry;
     [SerializeField] private GameObject _nextLvl;
@@ -15,12 +16,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textBalls;
     [SerializeField] private TextMeshProUGUI _textTouch;
 
+    //private values
     private int _touchMax;
     private int _ballMax;
     private int _touch;
-    
+
+    //public values
     public static UIManager UIM;
-    
+
+    /// <summary>
+    /// Private Methods.
+    /// </summary>
     private void Awake()
     {
         if (UIM == null)
@@ -30,6 +36,9 @@ public class UIManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Public Methods.
+    /// </summary>
     public void UpdateScreen()
     {
         _textBalls.text = "Balls = " + GameManager.Gm.GetBall() + "/" + _ballMax;
@@ -38,9 +47,7 @@ public class UIManager : MonoBehaviour
             _touch = 0;
         _textTouch.text = "Touch = " + _touch + "/" + _touchMax;
     }
-/*
- *    void ClearScreen()
- */
+
     public void OffScreen()
     {
         _start.SetActive(false);

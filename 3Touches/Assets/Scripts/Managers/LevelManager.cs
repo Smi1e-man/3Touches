@@ -6,13 +6,21 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
+    //private visual values
     [SerializeField] private List<Hole> _holes;
     [SerializeField] private List<GameObject> _LvlsObstacles;
+
+    //private values
     private GameObject _activeObstacle;
     private int _currentLvl;
     private Vector3 _startPos;
-    
+
+    //public values
     public static LevelManager LvlM;
+
+    /// <summary>
+    /// Private Methods.
+    /// </summary>
     private void Awake()
     {
         if (LvlM == null)
@@ -32,6 +40,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Public Methods.
+    /// </summary>
     public void ActivateRandomHole()
     {
         int rand = Random.Range(0, _holes.Count);

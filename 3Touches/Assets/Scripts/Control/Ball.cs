@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    //private visual values
 	[SerializeField] private GameObject _dir;
 
+    //private values
 	private float _defScale = 1f;
-	
 	private float _scaleCoef;
 	private float _SlowMotion;
 	private float _deltaImpulse;
@@ -26,7 +26,11 @@ public class Ball : MonoBehaviour
 	private Vector3 _tmp;
 	private Vector3 _up;
 	private Vector3 _scale = new Vector3();
-	void Start()
+
+    /// <summary>
+    /// Private Methods.
+    /// </summary>
+	private void Start()
 	{
 		_dirTransform = _dir.transform;
 		_dirpos = _dirTransform.position;
@@ -46,7 +50,7 @@ public class Ball : MonoBehaviour
 		_rigidbody.drag = _drag;
 	}
 
-	void Update()
+    private void Update()
 	{
 		if (Input.GetMouseButtonDown(0))
 			MouseDown();
@@ -62,14 +66,14 @@ public class Ball : MonoBehaviour
 		_dirTransform.position = _dirpos;
 	}
 
-	void MouseDown()
+    private void MouseDown()
 	{
 		if (_rigidbody.velocity != Vector3.zero)
 			Time.fixedDeltaTime = 0.02F * _SlowMotion;
 			Time.timeScale = _SlowMotion;
 		_down = Input.mousePosition;
 	}
-	void MouseUp()
+    private void MouseUp()
 	{
 		_rigidbody.useGravity = true;
 		Time.fixedDeltaTime = 0.02F;
@@ -79,7 +83,7 @@ public class Ball : MonoBehaviour
 		PushObj();
 	}
 
-	void Dir()
+    private void Dir()
 	{
 		float distance = Vector3.Distance(_down, _tmp);
 		float scale = distance / _scaleCoef + 1;
@@ -95,8 +99,8 @@ public class Ball : MonoBehaviour
 		direction.y = _dirTransform.position.y;
 		_dirTransform.LookAt(direction);
 	}
-	
-	void PushObj()
+
+    private void PushObj()
 	{
 		_scale = ChangeVectorValue(_scale, _scaleMin);
 		_dirTransform.localScale = _scale;
@@ -108,7 +112,7 @@ public class Ball : MonoBehaviour
 		GameManager.Gm.Touch();
 	}
 
-	Vector3 ChangeVectorValue(Vector3 vector, float value)
+    private Vector3 ChangeVectorValue(Vector3 vector, float value)
 	{
 		vector.x = value;
 		vector.y = value;

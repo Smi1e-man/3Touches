@@ -5,10 +5,6 @@ using UnityEngine;
 public class StateActive : MonoBehaviour, IStatesHole
 {
     /// <summary>
-    /// Private Methods.
-    /// </summary>
-
-    /// <summary>
     /// Public Methods.
     /// </summary>
     public void UpdateState()

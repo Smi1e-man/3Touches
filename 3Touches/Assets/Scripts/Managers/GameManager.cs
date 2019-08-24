@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     //private visual values
     [SerializeField] private GameObject _Ball;
+
     //private values
     private Vector3 _BallPos;
     private Rigidbody _BallRb;
@@ -19,9 +20,13 @@ public class GameManager : MonoBehaviour
     private int _touch;
     private int _ball;
     private int _ballMax;
+
     //public values
     public static GameManager Gm;
 	
+    /// <summary>
+    /// Private Methods.
+    /// </summary>
 	private void Awake()
 	{
 		if (Gm == null)
@@ -45,7 +50,6 @@ public class GameManager : MonoBehaviour
 		UIManager.UIM.UpdateScreen();
 		Check();
 	}
-    
 
 	private void ChangeLvlScreen(int n)
 	{
@@ -70,6 +74,7 @@ public class GameManager : MonoBehaviour
 		_game = true;
 		_win = false;
 	}
+
 	private void Check()
 	{
 		if (_ball == _ballMax)
@@ -77,6 +82,7 @@ public class GameManager : MonoBehaviour
 		if ((_touch == _touchMax && _BallStay) || (_touch > _touchMax))
 			EndGame(false);
 	}
+
 	private void RefreshBall()
     {
 	    _ball = 0;
@@ -86,20 +92,30 @@ public class GameManager : MonoBehaviour
 	{
 		_touch = -1;
 	}
-	public void EndGame(bool win)
-	{
-		_game = false;
-		_win = win;
-		ChangeLvlScreen(1);
-	}
 
-	public void BallMove()
-	{
-		StopCoroutine(Stay());
-		_BallStay = false;
-		StartCoroutine(Stay());
+    private IEnumerator Stay()
+    {
+        yield return new WaitForSeconds(10);
+        _BallStay = true;
+    }
 
-	}
+    /// <summary>
+    /// Public Methods.
+    /// </summary>
+    public void EndGame(bool win)
+    {
+        _game = false;
+        _win = win;
+        ChangeLvlScreen(1);
+    }
+
+    public void BallMove()
+    {
+        StopCoroutine(Stay());
+        _BallStay = false;
+        StartCoroutine(Stay());
+
+    }
     public void Goal()
     {
         _ball += 1;
@@ -110,26 +126,23 @@ public class GameManager : MonoBehaviour
 
     public void BallOnStart()
     {
-	    _BallRb.velocity = Vector3.zero;
-	    _Ball.transform.position = _BallPos;
+        _BallRb.velocity = Vector3.zero;
+        _Ball.transform.position = _BallPos;
     }
+
     public void Touch()
     {
-	    _touch++;
+        _touch++;
     }
+
     public int GetTouch()
     {
-	    return _touch;
+        return _touch;
     }
 
     public int GetBall()
     {
-	    return _ball;
+        return _ball;
     }
 
-    IEnumerator Stay()
-    {
-	    yield return new WaitForSeconds(10);
-	    _BallStay = true;
-    }
 }

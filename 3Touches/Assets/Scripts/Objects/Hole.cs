@@ -6,10 +6,8 @@ using UnityEngine;
 public class Hole : MonoBehaviour
 {
     //private visual values
-    [SerializeField]
-    StateActive _stateActive;
-    [SerializeField]
-    StateDisactive _stateDisactive;
+    [SerializeField] private StateActive _stateActive;
+    [SerializeField] private StateDisactive _stateDisactive;
 
     //private values
     private IStatesHole _state;
@@ -25,12 +23,16 @@ public class Hole : MonoBehaviour
         if (_hole == null)
             _hole = this;
         ChangeStateOnDisactive();
-        //gameObject.SetActive(false);
     }
 
     private void Update()
     {
         _state.UpdateState();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _state.BallEnter();
     }
 
     /// <summary>
@@ -39,19 +41,12 @@ public class Hole : MonoBehaviour
     public void ChangeStateOnDisactive()
     {
         _state = _stateDisactive;
-        //DELETE, when add holeEffectsActive
         GetComponent<MeshRenderer>().enabled = false;
     }
 
     public void ChangeStateOnActive()
     {
         _state = _stateActive;
-        //DELETE, when add holeEffectsActive
         GetComponent<MeshRenderer>().enabled = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        _state.BallEnter();
     }
 }
